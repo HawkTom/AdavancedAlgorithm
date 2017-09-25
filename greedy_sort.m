@@ -1,16 +1,14 @@
-function [job_assignment, job_value] = greedy_sort( m, n, t )
+function [job_assignment, machine_loads] = greedy_sort( m, n, t )
 % m --> the number of machine
 % n --> the number of jobs
 % t --> time of each job
-job_assignment = zeros(m,1);
-job_value = zeros(m,1);
+job_assignment = cell([1,m]);
+machine_loads = zeros(m,1);
 t = sort(t,'descend');
 for i=1:n
-  [min_value, min_index] = min(job_value);
-  job_value(min_index) = min_value + t(i);
-  temp = zeros(m,1);
-  temp(min_index) = i;
-  job_assignment = [job_assignment, temp];
+    [min_value, min_index] = min(machine_loads);
+    machine_loads(min_index) = min_value + t(i);
+    job_assignment{min_index} = [job_assignment{min_index}, i];
 end
 end
 
