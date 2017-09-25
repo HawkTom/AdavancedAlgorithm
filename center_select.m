@@ -7,6 +7,7 @@ for i=2:k
     [~, s_index] = max(dist_s_C);
     s = data(s_index, :);
     C = [C; s];
+    data(s_index,:) = [];
 end
 
 end
